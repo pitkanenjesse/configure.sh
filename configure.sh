@@ -3,9 +3,9 @@
 apt-get install curl -y
 export RAILS_ENV="production"
 service mysql start
-mysql -u root -p'' -h localhost -e "CREATE USER 'secprd' IDENTIFIED BY 'SeNh@F0rT3';"
-mysql -u root -p'' -h localhost -e "GRANT USAGE ON *.* TO 'secprd'@localhost IDENTIFIED BY 'SeNh@F0rT3';"
-mysql -u root -p'' -h localhost -e "GRANT ALL PRIVILEGES ON * . * TO 'secprd'@'localhost';" ; mysql -u root -p'' -h localhost -e "FLUSH PRIVILEGES;"
+mysql -u root -p' ' -h localhost -e "CREATE USER 'secprd' IDENTIFIED BY 'SeNh@F0rT3';"
+mysql -u root -p' ' -h localhost -e "GRANT USAGE ON *.* TO 'secprd'@localhost IDENTIFIED BY 'SeNh@F0rT3';"
+mysql -u root -p' ' -h localhost -e "GRANT ALL PRIVILEGES ON * . * TO 'secprd'@'localhost';" ; mysql -u root -p' ' -h localhost -e "FLUSH PRIVILEGES;"
 echo 'production:
   adapter: mysql2
   encoding: utf8
@@ -16,7 +16,7 @@ echo 'production:
   username: secprd
   password: SeNh@F0rT3' > /var/www/sec-app/config/database.yml
 bundle exec rails db:setup
-mysql -u root -p'' -h localhost -e "GRANT CREATE,DROP,DELETE,INSERT,SELECT,UPDATE ON * . * TO 'secprd'@'localhost';" ; mysql -u root -p'' -h localhost -e "FLUSH PRIVILEGES;"
+mysql -u root -p' ' -h localhost -e "GRANT CREATE,DROP,DELETE,INSERT,SELECT,UPDATE ON * . * TO 'secprd'@'localhost';" ; mysql -u root -p' ' -h localhost -e "FLUSH PRIVILEGES;"
 rails server &
 sleep 10
 while true; do curl -X POST http://localhost:3000/users; let cnt++ ; if [[ "$cnt" -gt 1000 ]]; then break ; fi ;  done
@@ -113,12 +113,12 @@ while true; do curl -X POST http://localhost:3000/users; let cnt++ ; if [[ "$cnt
 -Para efetuar o filtro, foi utilizado o seguinte comando:
 cat /var/www/sec-app/log/production.log | grep "error creating" | awk {print $11 } > /root/case2/output.txt' > /root/case2/README.md 
 
-
+echo
 echo "Segue usuários que deram erro e não foram inserdos na base de dados:"
 cat /root/case2/output.txt
-
+echo
 echo "Segue passo a passo do case1:"
 cat /root/case1/README.md
-
+echo
 echo "Segue passo a passo do case2":
 cat /root/case2/README.md
