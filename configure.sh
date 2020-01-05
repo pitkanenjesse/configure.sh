@@ -40,7 +40,12 @@ Ferramentas utilizadas foram o GitHub, Logrotate, Puma e Curl.
 
 Poderia ter sido utilizdo um Ansible para efetuar a configuração dos servidores e um gerenciador de repositório como o Nexus, nesse caso foi utilizado apenas um script que está armazenado no GitHub.
 
-Segue os comandos comentados do passo a passo:
+
+Segue o comando de uma linha que provisiona toda configuração do servidor, utilizei o pull 2 vezes pois na primeira deu um erro de SSL e na segunda foi, só pra garantir, mais poderia ter colocado alguma condicional:
+
+docker pull seceng/sysadmin-debian ; docker pull seceng/sysadmin-debian ;  docker run -dit seceng/sysadmin-debian:latest ; git clone https://github.com/pitkanenjesse/configure.sh.git ; CONT=`docker ps -a | sed -sn 2p | awk {print $1}` ; docker cp configure.sh/configure.sh $CONT:/var/www/sec-app ; docker exec -it $CONT bash -c "chmod +x /var/www/sec-app/configure.sh ; ./configure.sh"
+
+Segue os comandos comentados do passo a passo do script disponibilizado no GitHub:
 
 -Instalar o curl para efetuar as chamadas posteriormente:
 apt-get install curl -y
