@@ -127,3 +127,5 @@ cat /root/case1/README.md
 echo
 echo "Segue passo a passo do case2":
 cat /root/case2/README.md
+echo
+echo "OBS: Nos arquivos README.md foi removido as aspas simples dos comandos, para mais detalhes sobre os comandos, verificar o script configure.sh que está no GitHub para mais detalhes"
